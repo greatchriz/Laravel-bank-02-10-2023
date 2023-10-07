@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('card_expiry_date');
             $table->string('card_cvv');
             $table->string('card_pin');
+            $table->float('card_balance', 8, 2)->default(0);
             $table->timestamps();
         });
     }
