@@ -8,7 +8,7 @@
                 <h1 class="total">$ {{ $user->balance }}.00</h1>
             </div>
             <div class="right">
-                <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#depositActionSheet">
+                <a href="{{ route('deposit-methods') }}" class="button">
                     <ion-icon name="add-outline"></ion-icon>
                 </a>
             </div>

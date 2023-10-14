@@ -43,3 +43,6 @@ Route::get('/account/notification', function () {
 Route::resource('atmCardDetails', App\Http\Controllers\AtmCardDetailController::class)->middleware('auth');
 Route::resource('cryptocurrencyWalletDetails', App\Http\Controllers\CryptocurrencyWalletDetailController::class)->middleware('auth');
 
+// generate a route that will display a page that contains methods a user can use to receive funds, like user account details, add with card or add through crypto currency
+
+Route::get('/deposit-methods', [App\Http\Controllers\DepositMethodController::class, 'index'])->name('deposit-methods');

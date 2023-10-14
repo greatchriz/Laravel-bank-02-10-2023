@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\DB;
+
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -26,10 +28,34 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        $accountNumber = $this->generateAccountNumber();
+
+        return DB::transaction(function () use ($input, $accountNumber) {
+            $user = User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => Hash::make($input['password']),
+                'account_number' => $accountNumber,
+            ]);
+
+            // Any additional logic or actions you want to perform after creating the user
+
+            return $user;
+        });
+    }
+
+
+
+    private function generateAccountNumber(): string
+    {
+        $accountNumber = '60' . mt_rand(10000000, 99999999);
+
+        if (User::where('account_number', $accountNumber)->exists()) {
+            return $this->generateAccountNumber();
+        }
+
+        return $accountNumber;
     }
 }
+
+
