@@ -116,9 +116,9 @@
 
             <div class="appFooter mt-3">
                 <div class="footer-title">
-                    Copyright © Finapp 2021. All Rights Reserved.
+                    Copyright © Crownagent 2023. All Rights Reserved.
                 </div>
-                Bootstrap 5 based mobile template.
+                Licensed by The Bank of Spain.
             </div>
 
         </div>
