@@ -12,14 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password'),
-            'email_verified_at' => now(),
-        ]);
+
 
         \App\Models\User::all()->each(function ($user) {
             $user->atmCardDetails()->saveMany(
@@ -32,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 \App\Models\CryptocurrencyWalletDetail::factory()->count(5)->make()
             );
         });
+
 
 
     }

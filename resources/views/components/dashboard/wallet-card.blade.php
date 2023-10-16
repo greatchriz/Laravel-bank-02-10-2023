@@ -203,9 +203,12 @@ tabindex="-1" role="dialog">
                         </div>
                     </div>
 
+
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             <label class="label" for="text11">To</label>
+                            @livewire('search-account-number')
+
                             <input type="email"
                                 class="form-control" id="text11"
                                 placeholder="Enter bank ID">

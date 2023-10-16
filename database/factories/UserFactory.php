@@ -30,7 +30,19 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
+            'account_number' => $this->generateAccountNumber(),
         ];
+    }
+
+    private function generateAccountNumber(): string
+    {
+        $accountNumber = '60' . mt_rand(10000000, 99999999);
+
+        if (User::where('account_number', $accountNumber)->exists()) {
+            return $this->generateAccountNumber();
+        }
+
+        return $accountNumber;
     }
 
     /**

@@ -1,0 +1,9 @@
+php artisan make:livewire SearchAccountNumber
+
+
+Listening for specific keys
+You can use one of Livewire's convenient aliases to narrow down key press event listeners to a specific key or combination of keys.
+
+For example, to perform a search when a user hits Enter after typing into a search box, you can use wire:keydown.enter:
+
+<input wire:model="query" wire:keydown.enter="searchPosts">
