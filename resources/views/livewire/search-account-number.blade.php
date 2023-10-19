@@ -1,25 +1,46 @@
 <div>
     <!-- Search Component -->
 
-            <div class="form-group searchbox">
-                <input
-                    wire:model.live="search"
-                    type="text"
-                    class="form-control"
-                    placeholder="Search..."
-                >
-                <i class="input-icon icon ion-ios-search"></i>
-                <a
-                    href="#"
-                    class="ms-1 close toggle-searchbox"
-                ><i class="icon ion-ios-close-circle"></i></a>
-            </div>
+    <div class="form-group basic">
+        <div class="input-wrapper">
+            <label
+                class="label"
+                for="search_account"
+            >To</label>
+            <input
+                wire:model.live="search"
+                type="text"
+                class="form-control"
+                id="search_account"
+                placeholder="Enter Account Number"
+            >
+            <i class="clear-input">
+                <ion-icon
+                    name="close-circle"
+                    role="img"
+                    class="md hydrated"
+                    aria-label="close circle"
+                ></ion-icon>
+            </i>
+        </div>
+    </div>
 
-        <ul class="listview simple-listview inset">
-            @foreach ($accountNumbers as $accountNumber)
-                <li>{{ $accountNumber->name }}</li>
-            @endforeach
-        </ul>
+    <select
+        wire:model="receiverAccountNumber"
+        class="form-control custom-select"
+        id="account2"
+    >
+        @foreach ($accountNumbers as $accountNumber)
+        <option
+            wire:key="{{ $accountNumber->id }}"
+            value="{{ $accountNumber->id }}"
+        >{{ $accountNumber->name }}</option>
+
+        @endforeach
+
+
+    </select>
+
 
 
 </div>
